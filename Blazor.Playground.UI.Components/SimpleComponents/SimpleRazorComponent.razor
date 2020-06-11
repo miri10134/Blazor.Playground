@@ -1,0 +1,25 @@
+﻿@using Blazor.Playground.Contract.Services;
+@inherits ASimpleComponent
+@inject IRandomGenerator Generator;
+
+<div>
+    <h3>Simple Razor Component</h3>
+    <p>Der aktuelle State: @(StateService.State.CurrentState)</p>
+    <p>ChangeValue: @(ChangeValue) <span class="oi oi-reload" @onclick="NewValue"></span></p>
+    <button @onclick="Add">Add</button>
+</div>
+
+@code {
+    [Parameter]
+    public int ChangeValue { get; set; }
+
+    private async Task Add()
+    {
+        await StateService.IncrementState(ChangeValue);
+    }
+
+    private void NewValue()
+    {
+        ChangeValue = Generator.NextInt();
+    }
+}
