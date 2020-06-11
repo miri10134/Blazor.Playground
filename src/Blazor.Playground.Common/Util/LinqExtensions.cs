@@ -18,7 +18,15 @@ namespace Blazor.Playground.Common.Util
 
         public static string Format<T>(this IEnumerable<T> enumerable, Func<T, string> generator = null)
         {
-            return $"[{string.Join(", ", enumerable.Select(e => generator?.Invoke(e) ?? e?.ToString()))}]";
+            return $"[{string.Join(", ", enumerable.NullToEmpty().Select(e => generator?.Invoke(e) ?? e?.ToString()))}]";
+        }
+
+        public static string Format<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, Func<TKey, string> keyGenerator = null, Func<TValue, string> valueGenerator = null)
+        {
+            if (dictionary == null)
+                return string.Empty;
+
+            return $"{{{string.Join(" ", dictionary.Select(p => $"<{keyGenerator?.Invoke(p.Key) ?? p.Key?.ToString()} : {valueGenerator?.Invoke(p.Value) ?? p.Key?.ToString()}>")) }}}";
         }
     }
 }

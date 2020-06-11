@@ -1,0 +1,40 @@
+﻿@inherits ALifecycleComponent
+
+<div>
+    <h5>Explanation</h5>
+    <p>Use the browser console output and the list values to understand how component lifecycles work.</p>
+    <p>In the console output you will see which methods are called when changing the number of elements.</p>
+    <p>The list values use the following pattern: {Unique id of the listelement } + Value {Counter of list changes} - {index in list}</p>
+    <p>Note how components are reused and when they actually get disposed.</p>
+    <p>After reducing the list you can try to trigger finalizer calls by either clicking the button or adding a lot more items.</p>
+    <p><i>Please be aware that the perfomance is heavily impacted by the large number of console calls.</i></p>
+</div>
+
+<div>
+    <input type="number" @bind="ListSize" />
+    <button @onclick="CallGC">Call GC</button>
+    <ListComponent @ref="Component" NumberOfElements="ListSize"></ListComponent>
+</div>
+@code {
+    private int ListSize { get; set; } = 3;
+    private ListComponent Component { get; set; }
+
+    // private DateTime RenderStartTime;
+    //protected override bool ShouldRender()
+    //{
+    //    RenderStartTime = DateTime.Now;
+    //    return base.ShouldRender();
+    //}
+
+    //protected override void OnAfterRender(bool firstRender)
+    //{
+    //    var diff = (DateTime.Now - RenderStartTime).TotalMilliseconds;
+    //    RenderTimeComponent.Diff = diff;
+    //    base.OnAfterRender(firstRender);
+    //}
+
+    private void CallGC()
+    {
+        GC.Collect();
+    }
+}

@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Playground.UI", "Blazor.Playground.UI\Blazor.Playground.UI.csproj", "{B05B1B76-F364-4AE4-8C6F-3A55DA9EB72E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Playground.UI.Components", "Blazor.Playground.UI.Components\Blazor.Playground.UI.Components.csproj", "{9E290C8E-55F3-4104-BFE1-115CD8DCCC5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Playground.UI.Components", "Blazor.Playground.UI.Components\Blazor.Playground.UI.Components.csproj", "{9E290C8E-55F3-4104-BFE1-115CD8DCCC5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Playground.Common", "Blazor.Playground.Common\Blazor.Playground.Common.csproj", "{88D40941-298E-4C0C-889F-055FA2E01C10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Playground.Common", "Blazor.Playground.Common\Blazor.Playground.Common.csproj", "{88D40941-298E-4C0C-889F-055FA2E01C10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Playground.Contract", "Blazor.Playground.Contract\Blazor.Playground.Contract.csproj", "{F159177C-EBEF-4118-A6AC-50E607D3A0B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Playground.Contract", "Blazor.Playground.Contract\Blazor.Playground.Contract.csproj", "{F159177C-EBEF-4118-A6AC-50E607D3A0B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

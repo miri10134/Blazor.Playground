@@ -1,0 +1,14 @@
+﻿
+<span><b>Last render time:</b> @Diff milliseconds.</span>
+
+@code {
+    private double diff;
+    public double Diff {
+        get => diff;
+        set
+        {
+            diff = value;
+            StateHasChanged();
+        }
+    }
+}

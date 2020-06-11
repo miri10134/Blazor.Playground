@@ -1,0 +1,31 @@
+﻿@inherits ALifecycleComponent
+<h3>ListComponent</h3>
+
+<ul>
+    @foreach(var value in Elements)
+    {
+        <ListElementComponent Value="@value" />
+    }
+</ul>
+
+@code {
+    private static int Counter { get; set; } = 0;
+
+    [Parameter]
+    public int NumberOfElements { get; set; }
+
+    private string[] Elements { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        Elements = new string[NumberOfElements];
+        Counter++;
+        foreach(var i in Enumerable.Range(0, NumberOfElements))
+        {
+            Elements[i] = $"Value {Counter} - {i}";
+        }
+
+        StateHasChanged();
+    }
+}

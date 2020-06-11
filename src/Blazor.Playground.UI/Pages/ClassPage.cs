@@ -15,6 +15,9 @@ namespace Blazor.Playground.UI.Pages
             builder.OpenElement(0, "div");
             builder.AddContent(1, $"Parameter: {Value}");
             builder.CloseElement();
+            builder.OpenElement(2, "div");
+            builder.AddContent(3, $"This page does nothing except for displaying the url parameter. Its only purpose is to demonstrate how a pure c# component can become a page by adding the Route attribute.");
+            builder.CloseElement();
         }
     }
 }
