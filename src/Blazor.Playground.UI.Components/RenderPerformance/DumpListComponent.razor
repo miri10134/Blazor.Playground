@@ -1,10 +1,11 @@
 ﻿@inherits APerformanceListComponent
 
-    <p><b>Elements:</b> @(Values.Count)</p>
+<button @onclick="Reset">Refresh</button>
+<p><b>Elements:</b> @(CurrentValues.Count)</p>
 <ul>
-    @foreach (var value in Values)
+    @foreach (var value in CurrentValues)
     {
-        <AListItemComponent Value="@value" RemoveElement="RemoveElement" />
+        <ListItemComponent Value="@value" RemoveElement="RemoveElement" />
     }
 </ul>
 

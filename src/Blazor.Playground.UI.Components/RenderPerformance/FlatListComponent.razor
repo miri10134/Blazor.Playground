@@ -1,8 +1,9 @@
 ﻿@inherits APerformanceListComponent
 
-<p><b>Elements:</b> @(Values.Count)</p>
+<button @onclick="Reset">Refresh</button>
+<p><b>Elements:</b> @(CurrentValues.Count)</p>
 <ul>
-    @foreach (var value in Values)
+    @foreach (var value in CurrentValues)
     {
         <li>@value <span class="oi oi-trash" @onclick="() => RemoveElement(value)"></span></li>
     }

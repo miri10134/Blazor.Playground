@@ -2,11 +2,11 @@
 @inject IJSRuntime JsRuntime
 @inherits APerformanceListComponent
 
-<p><b>Elements:</b> @(Values.Count)</p>
+<button @onclick="Reset">Refresh</button>
 <ul id="@Id">
-    @foreach (var value in Values)
+    @foreach (var value in CurrentValues)
     {
-        <AListItemComponent Value="@value" RemoveElement="RemoveElement" />
+        <ListItemComponent Value="@value" RemoveElement="RemoveElement" />
     }
 </ul>
 
@@ -17,8 +17,8 @@
     protected override async Task RemoveElement(string value)
     {
         var t1 = DateTime.Now;
-        var index = Values.IndexOf(value);
-        Values.RemoveAt(index);
+        var index = CurrentValues.IndexOf(value);
+        CurrentValues.RemoveAt(index);
         await JsRuntime.InvokeVoidAsync("componentInterop.deleteChild", Id, index);
 
         var diff = (DateTime.Now - t1).TotalMilliseconds;

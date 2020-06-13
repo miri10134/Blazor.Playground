@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace Blazor.Playground.UI.Components.RenderPerformance
     public abstract class APerformanceListComponent : AComponent
     {
         [Parameter]
-        public List<string> Values { get; set; }
+        public IReadOnlyList<string> Values { get; set; }
 
         [Parameter]
         public Action<double> SetRendertime { get; set; }
@@ -29,10 +30,18 @@ namespace Blazor.Playground.UI.Components.RenderPerformance
             base.OnAfterRender(firstRender);
         }
 
+        protected List<string> CurrentValues { get; set; } = new List<string>();
+
         protected virtual async Task RemoveElement(string value)
         {
-            if(Values.Remove(value))
+            if(CurrentValues.Remove(value))
                 await InvokeAsync(() => StateHasChanged());
+        }
+
+        protected async Task Reset()
+        {
+            CurrentValues = Values.ToList();
+            await InvokeAsync(() => StateHasChanged());
         }
     }
 }

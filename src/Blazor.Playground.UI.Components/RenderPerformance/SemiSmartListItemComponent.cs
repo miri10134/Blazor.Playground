@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Blazor.Playground.UI.Components.RenderPerformance
 {
-    public class SemiSmartListItemComponent : AListItemComponent
+    public class SemiSmartListItemComponent : ListItemComponent
     {
         private string OldValue { get; set; }
         private bool HasChanged { get; set; } = true;
