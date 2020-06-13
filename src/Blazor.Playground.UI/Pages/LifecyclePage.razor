@@ -2,6 +2,16 @@
 @page "/life-cycle"
 
 <h1>Lifecycle Playground</h1>
+<div>
+    <h5>Explanation</h5>
+    <p>Use the browser console output and the list values to understand how component lifecycles work.</p>
+    <p>In the console output you will see which methods are called when changing the number of elements.</p>
+    <p>The list values use the following pattern: {Unique id of the listelement } + Value {Counter of list changes} - {index in list}</p>
+    <p>Note how components are reused and when they actually get disposed.</p>
+    <p>After reducing the list you can try to trigger finalizer calls by either clicking the button or adding a lot more items.</p>
+    <p><i>Please be aware that the perfomance is heavily impacted by the large number of console calls.</i></p>
+</div>
+
 <LifecyclePlayground />
 
 @code {

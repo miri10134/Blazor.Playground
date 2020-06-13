@@ -1,0 +1,15 @@
+﻿
+<li>@Value <span class="oi oi-trash" @onclick="Remove"></span></li>
+
+@code {
+    [Parameter]
+    public string Value { get; set; }
+
+    [Parameter]
+    public Func<string, Task> RemoveElement { get; set; }
+
+    private async Task Remove()
+    {
+        await RemoveElement?.Invoke(Value);
+    }
+}

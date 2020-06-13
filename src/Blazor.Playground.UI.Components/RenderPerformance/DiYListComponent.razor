@@ -1,0 +1,27 @@
+﻿@using Microsoft.JSInterop
+@inject IJSRuntime JsRuntime
+@inherits APerformanceListComponent
+
+<p><b>Elements:</b> @(Values.Count)</p>
+<ul id="@Id">
+    @foreach (var value in Values)
+    {
+        <AListItemComponent Value="@value" RemoveElement="RemoveElement" />
+    }
+</ul>
+
+
+@code { 
+    private Guid Id { get; } = Guid.NewGuid();
+
+    protected override async Task RemoveElement(string value)
+    {
+        var t1 = DateTime.Now;
+        var index = Values.IndexOf(value);
+        Values.RemoveAt(index);
+        await JsRuntime.InvokeVoidAsync("componentInterop.deleteChild", Id, index);
+
+        var diff = (DateTime.Now - t1).TotalMilliseconds;
+        SetRendertime?.Invoke(diff);
+    }
+}

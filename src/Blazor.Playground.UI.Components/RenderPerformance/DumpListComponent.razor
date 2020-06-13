@@ -1,0 +1,13 @@
+﻿@inherits APerformanceListComponent
+
+    <p><b>Elements:</b> @(Values.Count)</p>
+<ul>
+    @foreach (var value in Values)
+    {
+        <AListItemComponent Value="@value" RemoveElement="RemoveElement" />
+    }
+</ul>
+
+@code {
+
+}
