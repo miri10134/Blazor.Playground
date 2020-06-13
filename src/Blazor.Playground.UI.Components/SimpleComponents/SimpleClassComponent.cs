@@ -28,7 +28,7 @@ namespace Blazor.Playground.UI.Components.SimpleComponents
 
             // p
             builder.OpenElement(seq++, "p");
-            builder.AddContent(seq++, $"Der aktuelle State: {StateService.State.CurrentState}");
+            builder.AddContent(seq++, $"Current State: {StateService.State.CurrentState}");
             builder.CloseElement();
 
             // p

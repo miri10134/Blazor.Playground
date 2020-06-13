@@ -2,4 +2,29 @@
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
+    grid-column-gap: 10px;
+}
+
+.explanation::before {    
+    content: "Explanation";
+}
+
+.explanation {
+    background-color: lightgoldenrodyellow;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    width: fit-content;
+    min-width: 25%;
+}
+
+.explanation p {
+    display: none;
+}
+
+.explanation:hover::before {    
+    content: none;
+}
+
+.explanation:hover p {
+    display: block;
 }

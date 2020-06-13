@@ -1,19 +1,21 @@
 ﻿<RenderTimeComponent @ref="RenderTimeComponent" />
-<div class="component-spit-view">
+<div class="component-spit-view" style="margin-top: 1em">
     <div>
         <h5>Naive Component</h5>
-        <div>
+        <p style="font-style:italic">Relative render time: 100%</p>
+        <div class="explanation">
             <p>Every item is a component that just writes the expected output.</p>
             <p>When deleting an item the whole render tree has to be processed.</p>
         </div>
         @if (Values != null)
         {
-            <DumpListComponent Values="Values" SetRendertime="SetRenderTime" />
+            <NaiveListComponent Values="Values" SetRendertime="SetRenderTime" />
         }
     </div>
     <div>
         <h5>Semi Smart Component</h5>
-        <div>
+        <p style="font-style:italic">Relative render time: 50-100%</p>
+        <div class="explanation">
             <p>Every item is a component, but they override ShouldRender.</p>
             <p>This improves performance when deleting near the end of the list becauser fewer components need to be rendered.</p>
         </div>
@@ -24,7 +26,8 @@
     </div>
     <div>
         <h5>Flat Component</h5>
-        <div>
+        <p style="font-style:italic">Relative render time: 50%</p>
+        <div class="explanation">
             <p>The whole list is only one component.</p>
             <p>This improves render performance but limits flexibility. </p>
         </div>
@@ -34,8 +37,23 @@
         }
     </div>
     <div>
+        <h5>Smart Component</h5>
+        <p style="font-style:italic">Relative render time: 50%</p>
+        <div class="explanation">
+            <p>Same item components as Semi Smart.</p>
+            <p>C# list component with custom BuildRenderTree implementation that uses same sequence-numbers for same list items.</p>
+            <p>By doing this all list items are assigned to the same item components as before.</p>
+            <p style="color: green">This yields the same performance as the flat list but with greater flexibility.</p>
+        </div>
+        @if (Values != null)
+        {
+            <RenderTreeListComponent Values="Values.ToList()" SetRendertime="SetRenderTime" />
+        }
+    </div>
+    <div>
         <h5>Delete it Yourself Component</h5>
-        <div>
+        <p style="font-style:italic">Relative render time: 1%</p>
+        <div class="explanation">
             <p>Uses JavaScript interop to remove target child from DOM.</p>
             <p>This results in extreme performance but can cause unexpected behavior due to state mismatch.</p>
             <p style="color: red">Use with caution!</p>

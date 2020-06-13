@@ -2,6 +2,11 @@
 @page "/renderperf"
 
 <h3> Performance Playground</h3>
+<div class="explanation">
+    <p>Compares different approaches for changes on components with large number of childs. It is highly recommended that you understand the <NavLink href="/life-cycle">Component Lifecycle</NavLink> first.</p>
+    <p>All lists start with 1000 entries. Press Refresh to begin, then delete entries by clicking the trashcan icon. Watch and compare the render time.</p>
+    <p>Note: "Render" in Blazor means building the <i>Virtual DOM</i> (aka render tree), identifing changes and applying them to the actual DOM. It does not mean repainting the whole HTML.</p>
+</div>
 
 <PerformancePlayground />
 

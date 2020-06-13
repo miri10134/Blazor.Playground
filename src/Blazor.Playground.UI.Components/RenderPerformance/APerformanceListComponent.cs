@@ -38,7 +38,7 @@ namespace Blazor.Playground.UI.Components.RenderPerformance
                 await InvokeAsync(() => StateHasChanged());
         }
 
-        protected async Task Reset()
+        protected virtual async Task Reset()
         {
             CurrentValues = Values.ToList();
             await InvokeAsync(() => StateHasChanged());
