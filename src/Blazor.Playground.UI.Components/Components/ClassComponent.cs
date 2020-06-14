@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blazor.Playground.UI.Components.SimpleComponents
+namespace Blazor.Playground.UI.Components.Components
 {
-    public class SimpleClassComponent : ASimpleComponent
+    public class ClassComponent : AComponentDemo
     {
         [Parameter]
         public int ChangeValue { get; set; }
@@ -23,7 +23,17 @@ namespace Blazor.Playground.UI.Components.SimpleComponents
             builder.OpenElement(seq++, "div");
             // h3
             builder.OpenElement(seq++, "h3");
-            builder.AddContent(seq++, "Simple Class Component");
+            builder.AddContent(seq++, "Class Component");
+            builder.CloseElement();
+
+            // p
+            builder.OpenElement(seq++, "p");
+            builder.AddContent(seq++, $"This component is defined purely in C#.");
+            builder.CloseElement();
+
+            // p
+            builder.OpenElement(seq++, "p");
+            builder.AddContent(seq++, $"Is does exactly the same as the Razor Component.");
             builder.CloseElement();
 
             // p

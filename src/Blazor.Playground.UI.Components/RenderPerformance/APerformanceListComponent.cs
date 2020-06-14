@@ -35,13 +35,13 @@ namespace Blazor.Playground.UI.Components.RenderPerformance
         protected virtual async Task RemoveElement(string value)
         {
             if(CurrentValues.Remove(value))
-                await InvokeAsync(() => StateHasChanged());
+                await InvokeAsync(() => StateHasChanged()).ConfigureAwait(false);
         }
 
         protected virtual async Task Reset()
         {
             CurrentValues = Values.ToList();
-            await InvokeAsync(() => StateHasChanged());
+            await InvokeAsync(() => StateHasChanged()).ConfigureAwait(false);
         }
     }
 }

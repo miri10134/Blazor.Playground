@@ -1,9 +1,11 @@
 ﻿@using Blazor.Playground.Contract.Services;
-@inherits ASimpleComponent
+@inherits AComponentDemo
 @inject IRandomGenerator Generator;
 
 <div>
-    <h3>Simple Razor Component</h3>
+    <h3>Razor Component</h3>
+    <p>This component is defined in Razor.</p>
+    <p>It shows the parameter value and the state in IStateService.</p>
     <p>Current State: @(StateService.State.CurrentState)</p>
     <p>ChangeValue: @(ChangeValue) <span class="oi oi-reload" @onclick="NewValue"></span></p>
     <button @onclick="Add">Add</button>

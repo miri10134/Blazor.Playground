@@ -17,14 +17,18 @@
     min-width: 25%;
 }
 
-.explanation p {
+.explanation * {
     display: none;
 }
 
-.explanation:hover::before {    
+.explanation:hover:before {    
     content: none;
 }
 
-.explanation:hover p {
+.explanation:hover * {
     display: block;
 }
+
+    .explanation:hover a, .explanation:hover span, .explanation:hover b, .explanation:hover i {
+        display: inline;
+    }

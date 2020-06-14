@@ -1,7 +1,31 @@
-﻿@using Blazor.Playground.UI.Components.SimpleComponents
-@page "/simple"
+﻿@using Blazor.Playground.UI.Components.Components
+@page "/components"
 
-<h1>Simple Components</h1>
+<h1>Component Playground</h1>
 
-<ViewSimpleComponent />
+<div class="explanation">
+    <p>Explores and demonstrates basic concepts of components, including:</p>
+
+    <h4>Using base classes and interfaces</h4>
+    <p>All used Components share a base class (AComponentDemo) that inherits from ComponentBase.</p>
+    <p>We can define injection properties and parameters in base classes and override <NavLink href="/life-cycle">lifecycle</NavLink> methods.</p>
+
+    <h4>Defining components in Razor, C# or both.</h4>
+    <p>Components can be defined in .razor files or as pure C# classes.</p>
+    <p>Since Razor components are generated as partial classes, we can also mix both.</p>
+
+    <h4>Parameters</h4>
+    <p>The components receive the initial "ChangeValue" from outside.</p>
+    <p style="color:red">ToDo: CallBacks, Renderfragments</p>
+
+    <h4>Dependency Injection</h4>
+    <p>The components receive two Services via DI: IStateService (Singleton) in the base class, IRandomGenerator in the actual class.</p>
+    
+    <h4>Binding and EventHandling</h4>
+    <p>When clicking the "Add" or "Multiply" buttons you can see the state changing.</p>
+    <p>This is done via registered EventHandler and the StateHasChanged method.</p>
+    <p>This also demonstrates that the injected StateService is in fact a singleton.</p>
+</div>
+
+<ComponentPlayground />
 

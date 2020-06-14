@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blazor.Playground.UI.Components.SimpleComponents
+namespace Blazor.Playground.UI.Components.Components
 {
-    public abstract class ASimpleComponent : AComponent, IDisposable
+    public abstract class AComponentDemo : AComponent, IDisposable
     {
         [Inject]
         public IStateService StateService { get; set; }

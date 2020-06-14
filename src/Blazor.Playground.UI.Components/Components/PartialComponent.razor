@@ -1,0 +1,17 @@
+﻿@inherits AComponentDemo
+@implements ICloneable
+
+<div>
+    <h3>Partial Component</h3>
+    <p>This component is partially defined in Razor and in C#.</p>
+    <p><b>This</b> text was set in razor. But the following line comes from a property defined and initalized in C#:</p>
+    <p><br /></p>
+    <p style="font-style:italic">@(Value)</p>
+    <p><br /></p>
+    <p>This works, because Razor components are generated as partial classes.</p>
+    <p>So far I have discovered only two constraints:</p>
+    <ul>
+        <li>BuildRenderTree cannot be overridden in C#</li>
+        <li>Any base class inheritance must be declared in Razor (implemented Interfaces can be declared either way).</li>
+    </ul>
+</div>
