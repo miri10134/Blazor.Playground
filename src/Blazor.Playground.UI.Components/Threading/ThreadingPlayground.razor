@@ -4,11 +4,53 @@
     <p><b>State:</b> @State</p>
 </div>
 
-<button @onclick="Delay">Task.Delay</button>
-<button @onclick="Wait">Task.Wait</button>
-<button @onclick="Run">Task.Run</button>
-<button @onclick="Sleep">Thread.Sleep</button>
-<button @onclick="StartThread">Thread.Start</button>
+<div class="component-list-view">
+    <div>
+        <button @onclick="Delay">Task.Delay</button>
+        <div class="explanation">
+            <p style="color:green">Will work as expected.</p>
+            <p>The timer continues to run and the state is updated after 3 Seconds.</p>
+        </div>
+    </div>
+    <div>
+        <button @onclick="Wait">Task.Wait</button>
+        <div class="explanation">
+            <p style="color:red">Not supported on WebAssembly. Will throw an exception.</p>
+            <p>In Blazor preview version this would have caused the page to block indefinitely.</p>
+        </div>
+    </div>
+    <div>
+        <button @onclick="Run">Task.Run</button>
+        <div class="explanation">
+            <p>Runs on main thread. Will pause the timer for the duration of the "asynchronous" Task.</p>
+            <p>Note: The control flow still works as expected: The State is updated to "Normal" after starting Task and set to "Done Internal" after delay.</p>
+            <p>Is is never updated to "Running..." because the control is not returned to the UI thread before the end of the method.</p>
+        </div>
+    </div>
+    <div>
+        <button @onclick="Sleep">Thread.Sleep</button>
+        <div class="explanation">
+            <p>Pauses the main thread.</p>
+            <p>Timer will be paused, but continues after sleep time.</p>
+        </div>
+    </div>
+    <div>
+        <button @onclick="StartThread">Thread.Start</button>
+        <div class="explanation">
+            <p style="color:red">Not supported on WebAssembly. Will throw an exception.</p>
+        </div>
+    </div>
+    <div>
+        <button @onclick="LongRunning">Longrunning</button>
+        <button @onclick="LongRunningWithConfigureAwait">ConfigureAwait</button>
+        <div class="explanation">
+            <p>This demonstrates how to do long running tasks without blocking the UI.</p>
+            <p>Is was also a test to see whether ConfigureAwait(false) can speed up execution.</p>
+            <p>Since the duration increases every time, it is hard to tell. But it doesn't seem to make a difference. </p>
+            <p>Using ConfigureAwait(false) is recommended nevertheless, especially in the non UI layers of the application.</p>
+        </div>
+    </div>
+</div>
 
 @code {
 

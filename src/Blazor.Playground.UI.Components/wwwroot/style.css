@@ -5,7 +5,13 @@
     grid-column-gap: 10px;
 }
 
-.explanation::before {    
+.component-list-view {
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-rows: min-content;
+}
+
+.explanation::before {
     content: "Explanation";
 }
 

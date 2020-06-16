@@ -23,7 +23,7 @@ namespace Blazor.Playground.UI.Components.Threading
         }
 
         private async Task Delay()
-        {
+        { 
             State = "Delaying ...";
             await Task.Delay(3000);
             State = "Normal";
@@ -39,6 +39,7 @@ namespace Blazor.Playground.UI.Components.Threading
         private void Run()
         {
             State = "Running ...";
+            // Note: Using await does not change the behavior.
             Task.Run(() =>
             {
                 var targetTime = DateTime.Now.AddSeconds(3);
@@ -68,6 +69,32 @@ namespace Blazor.Playground.UI.Components.Threading
         {
             State = "Thread started";
             Console.WriteLine("Thread started");
+        }
+
+        private async Task LongRunning()
+        {
+            State = "Long Running ...";
+            var t1 = DateTime.Now;
+            for(int i = 0; i < 1000; i++)
+            {
+                await Task.Delay(5);
+            }
+            var diff = (DateTime.Now - t1).TotalMilliseconds;
+            State = $"Duration: {diff} ms";
+            GC.Collect();
+        }
+
+        private async Task LongRunningWithConfigureAwait()
+        {
+            State = "Long Running ...";
+            var t1 = DateTime.Now;
+            for (int i = 0; i < 1000; i++)
+            {
+                await Task.Delay(5).ConfigureAwait(false);
+            }
+            var diff = (DateTime.Now - t1).TotalMilliseconds;
+            State = $"Duration: {diff} ms";
+            GC.Collect();
         }
 
         /// <summary>

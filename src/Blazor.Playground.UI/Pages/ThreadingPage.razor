@@ -1,7 +1,17 @@
 ﻿@using Blazor.Playground.UI.Components.Threading
 @page "/threading"
-<h3>Threading Playground</h3>
-
+<h3>Concurrency Playground</h3>
+<div class="explanation">
+    <p>This page explores the effect of different approaches to start and pause asynchronous executions.</p>
+    <p>The main point here is to understand that Blazor WebAssembly <NavLink href="https://github.com/dotnet/aspnetcore/issues/14253" target="_blank">does not support multithreading</NavLink>. Everything runs on the UI thread.</p>
+    <p><br /></p>
+    <p>To understand the effects of the different Task or Thread methods, there are two components on this page:</p>
+    <p>The <b>Timer</b> updates to the current time every second. It will stop updating when an action blocks the UI thread.</p>
+    <p>The <b>State</b> is updated at the beginning and end of every method. This is an indication of whether and when an asynchronous action gets completed.</p>
+    <p><br /></p>
+    <p>An additional thing to note is that the page is automatically updated <i>whenever</i> the control flow is returned to the UI thread (i.e. through await). StateHasChanged is never called in this class.</p>
+    <p>Otherwise you would not see the the state change before the method is completed.</p>
+</div>
 <ThreadingPlayground />
 
 @code {
