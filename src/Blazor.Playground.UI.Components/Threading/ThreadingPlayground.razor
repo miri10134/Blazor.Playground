@@ -1,0 +1,15 @@
+﻿
+<div>
+    <p><b>Background-Timer:</b> @(DateTime.Now.ToString("hh:mm:ss.fff"))</p>
+    <p><b>State:</b> @State</p>
+</div>
+
+<button @onclick="Delay">Task.Delay</button>
+<button @onclick="Wait">Task.Wait</button>
+<button @onclick="Run">Task.Run</button>
+<button @onclick="Sleep">Thread.Sleep</button>
+<button @onclick="StartThread">Thread.Start</button>
+
+@code {
+
+}

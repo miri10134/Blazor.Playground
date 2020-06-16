@@ -25,6 +25,10 @@
     <p>When clicking the "Add" or "Multiply" buttons you can see the state changing.</p>
     <p>This is done via registered EventHandler and the StateHasChanged method.</p>
     <p>This also demonstrates that the injected StateService is in fact a singleton.</p>
+    <p><br /></p>
+    <p>When clicking the reload symbol, the ChangeValue is randomized.</p>
+    <p>Note that this happens without a call to StateHasChanged.</p>
+    <p>This works because bound EventCallbacks <i>always result in a render call</i>. Override ShouldRender if you need to change that (or bind in JS).</p>
 </div>
 
 <ComponentPlayground />

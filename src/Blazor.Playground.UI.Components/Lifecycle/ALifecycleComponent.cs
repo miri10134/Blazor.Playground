@@ -13,7 +13,7 @@ namespace Blazor.Playground.UI.Components.Lifecycle
     /// <summary>
     /// Abstract base class. All lifecycle methods are overridden to log calls.
     /// </summary>
-    public abstract class ALifecycleComponent : AComponent, IDisposable
+    public abstract class ALifecycleComponent : AComponent, IDisposable, IAsyncDisposable
     {
         #region Lifecycle methods
         protected override void OnInitialized()
@@ -49,7 +49,7 @@ namespace Blazor.Playground.UI.Components.Lifecycle
         
         protected override bool ShouldRender()
         {
-            var baseValue = base.ShouldRender(); // We could return a dummy value but this is a good way to explore the default behavior.
+            var baseValue = base.ShouldRender(); // We could return a fixed value but this is a good way to explore the default behavior.
             LogMethod(new Dictionary<string, object> { { "return", baseValue } });
             return baseValue;
         }
@@ -75,6 +75,13 @@ namespace Blazor.Playground.UI.Components.Lifecycle
         ~ALifecycleComponent() => Dispose(disposing: false);
 
         public void Dispose() => Dispose(disposing: true);
+
+        public ValueTask DisposeAsync()
+        {
+            // Not called in current version. Even when IDisposeable isn't implemented. May change in future. 
+            LogMethod();
+            return new ValueTask(Task.CompletedTask);
+        }
         #endregion
 
         #region Logging
@@ -97,6 +104,6 @@ namespace Blazor.Playground.UI.Components.Lifecycle
         //    return Task.CompletedTask;
         //}
 
-        #endregion 
+        #endregion
     }
 }
