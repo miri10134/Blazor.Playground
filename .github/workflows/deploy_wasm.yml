@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore ./src
     - name: Build
-      run: dotnet build -c Release
+      run: dotnet build ./src -c Release
     - name: Publish
-      run: dotnet publish Blazor.Playground.UI -c Release -o ./publish --no-restore
+      run: dotnet publish ./src/Blazor.Playground.UI -c Release -o ./publish --no-restore
