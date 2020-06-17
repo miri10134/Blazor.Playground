@@ -28,4 +28,4 @@ jobs:
       with:
         azcliversion: latest
         inlineScript: |
-          az storage blob upload-batch -s $GITHUB_WORKSPACE/publish -d \$web --connection-string ${{ secrets.STORAGE_CONNECTION }}
+          az storage blob upload-batch -s $GITHUB_WORKSPACE/publish -d \$web --connection-string "${{ secrets.STORAGE_CONNECTION }}"
