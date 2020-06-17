@@ -1,6 +1,6 @@
 ﻿
 <div>
-    <p><b>Background-Timer:</b> @(DateTime.Now.ToString("hh:mm:ss.fff"))</p>
+    <p><b>Background-Timer:</b> @(DateTime.Now.ToString("HH:mm:ss.fff"))</p>
     <p><b>State:</b> @State</p>
 </div>
 
@@ -50,6 +50,7 @@
             <p>Using ConfigureAwait(false) is recommended nevertheless, especially in the non UI layers of the application.</p>
         </div>
     </div>
+    <InteropTimerComponent />
 </div>
 
 @code {

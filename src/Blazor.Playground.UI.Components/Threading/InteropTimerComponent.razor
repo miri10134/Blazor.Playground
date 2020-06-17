@@ -1,0 +1,35 @@
+﻿@using Microsoft.JSInterop
+@inject IJSRuntime JsRuntime;
+
+<div>
+    <h4>Other timers</h4>
+    <p><b>Interop-Callback: </b> @DateTime1.ToString("HH:mm:ss.fff")</p>
+    <p><b>JavaScript: </b><span id="datetime2"></span></p>
+    <div class="explanation">
+        <p>Since the background-timer above is obviously inaccurate, I wanted to compare it to different approaches.</p>
+        <p>Both are based on JavaScript intervals instead of .NET Timers.</p>
+        <p>The first one uses Interop-Callbacks to frequently call a .NET method within the component to repaint.</p>
+        <p>The second one uses JavaScript native methods (element.innerText) to display the time.</p>
+        <p><br /></p>
+        <p>As it turned out, it doesn't make a huge difference. </p>
+        <p>All three methods have a delay of a few milliseconds. It's smaller for the pure JS approach but still noticeable.</p>
+    </div>
+</div>
+
+@code {
+    private DateTime DateTime1 { get; set; } = DateTime.Now;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var reference = DotNetObjectReference.Create(this);
+        await JsRuntime.InvokeVoidAsync("interopThreading.setCallbackInterval", reference, 1000).ConfigureAwait(false);
+        await JsRuntime.InvokeVoidAsync("interopThreading.setTimerInterval", "datetime2", 1000).ConfigureAwait(false);
+    }
+
+    [JSInvokable("UpdateDateTime1")]
+    public async Task UpdateDateTime1()
+    {
+        DateTime1 = DateTime.Now;
+        await InvokeAsync(StateHasChanged).ConfigureAwait(false);
+    }
+}
