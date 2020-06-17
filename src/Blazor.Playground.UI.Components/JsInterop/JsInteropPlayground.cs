@@ -1,4 +1,6 @@
-﻿using Microsoft.JSInterop;
+﻿using Blazor.Playground.Contract.Services;
+using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,11 +10,12 @@ namespace Blazor.Playground.UI.Components.JsInterop
 {
     public partial class JsInteropPlayground
     {
-        private readonly Random _random = new Random();
+        [Inject]
+        public IRandomGenerator RandomGenerator { get; set; }
 
         private async Task InvokeReturn()
         {
-            var parameter = _random.Next(50);
+            var parameter = RandomGenerator.NextInt(50);
             Console.WriteLine($"{nameof(JsInteropPlayground)}.{nameof(InvokeReturn)}: parameter = {parameter}");
             var result = await JsRuntime.InvokeAsync<int>("jsInterop.returnDoubled", parameter);
             Console.WriteLine($"{nameof(JsInteropPlayground)}.{nameof(InvokeReturn)}: result = {result}");
@@ -20,7 +23,7 @@ namespace Blazor.Playground.UI.Components.JsInterop
 
         private async Task InvokeCallback()
         {
-            var parameter = _random.Next(50);
+            var parameter = RandomGenerator.NextInt(50);
             var reference = DotNetObjectReference.Create(this);
             Console.WriteLine($"{nameof(JsInteropPlayground)}.{nameof(InvokeCallback)}: parameter = {parameter}");
             await JsRuntime.InvokeVoidAsync("jsInterop.callBack", reference, nameof(ReceiveInstanceCallback), parameter);
@@ -42,7 +45,7 @@ namespace Blazor.Playground.UI.Components.JsInterop
 
         private async Task InvokeStaticCall()
         {
-            var numberOfElements = _random.Next(4) + 1;
+            var numberOfElements = RandomGenerator.NextInt(4) + 1;
             Console.WriteLine($"{nameof(JsInteropPlayground)}.{nameof(InvokeStaticCall)}: number of elements = {numberOfElements}");
             await JsRuntime.InvokeVoidAsync("jsInterop.callStaticMethod", numberOfElements);
         }
