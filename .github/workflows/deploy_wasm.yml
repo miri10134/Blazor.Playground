@@ -22,4 +22,10 @@ jobs:
     - name: Build
       run: dotnet build ./src -c Release
     - name: Publish
-      run: dotnet publish ./src/Blazor.Playground.UI -c Release -o ./publish --no-restore
+      run: dotnet publish ./src/Blazor.Playground.UI -c Release -o $GITHUB_WORKSPACE/publish --no-restore
+    - name: Deploy app
+      uses: Azure/cli@v1.0.0
+      with:
+        azcliversion: latest
+        inlineScript: |
+          az storage blob upload-batch -s $GITHUB_WORKSPACE/publish -d \$web --connection-string ${{ secrets.STORAGE_CONNECTION }}
