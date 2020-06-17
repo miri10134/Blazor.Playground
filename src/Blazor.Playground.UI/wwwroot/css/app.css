@@ -28,6 +28,8 @@ app {
 
 .main {
     flex: 1;
+    max-height: 100vh;
+    overflow-y: scroll;
 }
 
     .main .top-row {
@@ -181,4 +183,12 @@ app {
 
 p {
     margin: 0;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 1em;
+    color: #aaaaaa;
+    font-size: 0.9em;
 }

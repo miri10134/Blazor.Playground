@@ -3,6 +3,7 @@
 @inherits APerformanceListComponent
 
 <button @onclick="Reset">Refresh</button>
+<p><b>Elements:</b> @(CurrentValues.Count)</p>
 <ul id="@Id">
     @foreach (var value in CurrentValues)
     {

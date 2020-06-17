@@ -1,0 +1,21 @@
+﻿@using Blazor.Playground.UI.Components.JsInterop
+@page "/js-interop"
+
+<h3>Interop Playground</h3>
+<div class="explanation">
+    <p>Shows the three most common ways for interactions between .NET and JavaScript code:</p>
+    <ul>
+        <li>Calling a JavaScript function from .NET (optional: receiving a return value).</li>
+        <li>Calling a static .NET method from JavaScript.</li>
+        <li>Passing a reference to a .NET object instance and calling an instance method from JavaScript (synchronous and asynchronous).</li>
+    </ul>
+    <p>There are more possible methods of interaction between the two languages, but they are all just variants or combinations of the above.</p>
+    <p><br/></p>
+    <p>Note: One interesting aspect not covered here might be the handover of an HTML element from .NET to JavaScript.</p>
+    <p>There is an example for this in the @(nameof(Blazor.Playground.UI.Components.Threading.InteropTimerComponent))-class of the <NavLink href="/threading">Concurrency Playground</NavLink>.</p>
+</div>
+
+<JsInteropPlayground />
+@code {
+
+}

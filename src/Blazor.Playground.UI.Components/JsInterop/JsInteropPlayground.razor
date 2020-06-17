@@ -1,0 +1,33 @@
+﻿@using Microsoft.JSInterop
+@inject IJSRuntime JsRuntime
+
+
+<div class="component-list-view">
+    <div>
+        <button @onclick="InvokeReturn">Return</button>
+        <div class="explanation">
+            <p>Invokes a JavaScript function with a random number.</p>
+            <p>JavaScript function returns number * 2.</p>
+            <p>Both .NET and JS log to console.</p>
+        </div>
+    </div>
+    <div>
+        <button @onclick="InvokeStaticCall">Static Call</button>
+        <div class="explanation">
+            <p>Invokes a JavaScript function with a random number.</p>
+            <p>JavaScript function will call a static .NET method that returnes an random array.</p>
+            <p>Array is printed to console in JavaScript.</p>
+        </div>
+    </div>
+    <div>
+        <button @onclick="InvokeCallback">Callback</button>
+        <div class="explanation">
+            <p>Invokes a JavaScript function with a reference to the current component instance.</p>
+            <p>JavaScript function calls two instance methods on the referenced instance (one void, one async Task).</p>
+            <p>A random number is passed and logged to console.</p>
+            <p>Note the order in wich methods get completed.</p>
+        </div>        
+    </div>
+</div>
+
+
