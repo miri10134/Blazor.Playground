@@ -20,4 +20,6 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet publish -c Release -o ./publish --no-restore
+      run: dotnet build -c Release
+    - name: Publish
+      run: dotnet publish Blazor.Playground.UI -c Release -o ./publish --no-restore
