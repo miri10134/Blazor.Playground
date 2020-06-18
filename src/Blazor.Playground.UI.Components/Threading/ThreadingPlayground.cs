@@ -25,8 +25,10 @@ namespace Blazor.Playground.UI.Components.Threading
         private async Task Delay()
         { 
             State = "Delaying ...";
+            var t1 = DateTime.Now;
             await Task.Delay(3000);
-            State = "Normal";
+            var diff = (DateTime.Now - t1).TotalMilliseconds;
+            State = $"Normal Duration: {diff} ms";
         }
 
         private void Wait()

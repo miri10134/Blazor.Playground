@@ -40,3 +40,15 @@ window.threadingInterop = {
         }, delay);
     }
 }
+
+window.getRectangle = (element) => {
+    return element.getBoundingClientRect();
+}
+
+window.addListener = (element, event) => {
+    element.addEventListener(event, window.logMouseClick);
+}
+
+window.logMouseClick = (event) => {
+    console.log("MouseClick: " + event.offsetX + " : " + event.offsetY);
+}

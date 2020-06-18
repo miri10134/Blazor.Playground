@@ -1,0 +1,66 @@
+﻿<div class="component-list-view">
+    <div>
+        <input type="text" @bind="InputValue" />
+        <p><b>Input-Value: </b>@InputValue</p>
+        <div class="explanation">
+            <p>The value of the input field is bound to a property via @@bind.</p>
+            <p>The property value is printed as plain text.</p>
+            <p>Note that the value only changes when focus is lost ("on change" not "on input").</p>
+        </div>
+    </div>
+
+    <div>
+        <input type="text" @oninput="OnInput" />
+        <div><input type="text" @bind="InputValuePerKey" placeholder="Input-Value" disabled /></div>
+        <div class="explanation">
+            <p>The value of the input field is observed through an oninput-eventhandler.</p>
+            <p>Note that the value changes after every keystroke.</p>
+            <p>The value is printed inside another input field via @@bind.</p>
+            <p>This demonstrates how @@bind works in both directions.</p>
+        </div>
+    </div>
+
+    <div>
+        <input type="date" @bind="Date" />
+        <p><b>Date-Value: </b>@Date</p>
+        <div class="explanation">
+            <p>This is basically the same as the first example but with a date input.</p>
+            <p>Note that the format of both the input and the output is determined automatically.</p>
+        </div>
+    </div>
+
+    <div>
+        <input type="text" @onkeypress="OnKeyPress" @onkeypress:preventDefault="@PreventDefault" />
+        <div class="explanation">
+            <p>Demonstrates how to use preventDefault in Blazor.</p>
+            <p>Keys do not appear in the input field as long as the shift key is pressed.</p>
+            <p>Note: The use of a property is optional - and probably not intended. Use with care!</p>
+            <p>@@onkeypress:preventDefault (without ="") will prevent defaults on all events.</p>
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+    private string InputValue { get; set; }
+    private string InputValuePerKey { get; set; } = "";
+    private DateTime Date { get; set; } = DateTime.Now.Date;
+
+    private ElementReference Input2 { get; set; }
+
+
+    private void OnInput(ChangeEventArgs args)
+    {
+        InputValuePerKey = args.Value.ToString();
+    }
+
+
+    private bool PreventDefault { get; set; } = false;
+    private void OnKeyPress(KeyboardEventArgs args)
+    {
+        PreventDefault = args.ShiftKey;
+        // if using an async method, set the property before using await!!! 
+        // (otherwise it will prevent the NEXT key)
+    }
+}

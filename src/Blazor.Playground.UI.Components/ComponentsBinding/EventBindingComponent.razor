@@ -1,0 +1,44 @@
+﻿@using Blazor.Playground.Common.Util
+@using Microsoft.JSInterop
+@inject IJSRuntime JsRuntime
+
+<div>
+    <div style="width: 200px; height: 200px; border: 1px solid grey" @ref="Canvas" @onmousemove="OnMouseMove">
+    </div>
+    <p><b>X: </b>@X</p>
+    <p><b>Y: </b>@Y</p>
+</div>
+
+@code {
+    private double X { get; set; }
+    private double Y { get; set; }
+
+    private ElementReference Canvas { get; set; }
+
+    private async Task OnMouseMove(MouseEventArgs args)
+    {
+        // MouseEventArgs apparently does not contains OffsetX and OffsetY. 
+        // We have to calculate the cursor position within the actual element.
+
+        var result = await JsRuntime.InvokeAsync<Rect>("getRectangle", ((object)Canvas).IntoArray());
+
+        X = args.ClientX - result.Left;
+        Y = args.ClientY - result.Top;
+
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender)
+            await JsRuntime.InvokeVoidAsync("addListener", Canvas, "click");
+    }
+
+
+    private class Rect
+    {
+        public double Left { get; set; }
+        public double Right { get; set; }
+        public double Top { get; set; }
+        public double Bottom { get; set; }
+    }
+}
