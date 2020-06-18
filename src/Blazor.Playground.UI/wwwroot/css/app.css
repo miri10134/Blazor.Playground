@@ -192,3 +192,9 @@ footer {
     color: #aaaaaa;
     font-size: 0.9em;
 }
+
+#cat-image-home {
+    transform: rotate(90deg);
+    position: relative;
+    top: 15vh;
+}
