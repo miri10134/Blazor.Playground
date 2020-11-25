@@ -15,30 +15,16 @@
 
     private ElementReference Canvas { get; set; }
 
-    private async Task OnMouseMove(MouseEventArgs args)
+    private void OnMouseMove(MouseEventArgs args)
     {
-        // MouseEventArgs apparently does not contains OffsetX and OffsetY. 
-        // We have to calculate the cursor position within the actual element.
-
-        var result = await JsRuntime.InvokeAsync<Rect>("getRectangle", ((object)Canvas).IntoArray());
-
-        X = args.ClientX - result.Left;
-        Y = args.ClientY - result.Top;
-
+        // .Net 5: MouseEventArgs now support OffsetX/Y
+        X = args.OffsetX;
+        Y = args.OffsetY;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if(firstRender)
             await JsRuntime.InvokeVoidAsync("addListener", Canvas, "click");
-    }
-
-
-    private class Rect
-    {
-        public double Left { get; set; }
-        public double Right { get; set; }
-        public double Top { get; set; }
-        public double Bottom { get; set; }
     }
 }

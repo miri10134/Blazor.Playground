@@ -1,0 +1,37 @@
+﻿h3 {
+    color: green;
+}
+
+
+.headline {
+    font-style: italic;
+}
+
+
+
+.block {
+    border: 1px solid black;
+}
+
+
+.block p {
+    font-weight: bold;
+}
+
+
+
+::deep.block li {
+    font-weight: bold;
+}
+
+
+#isolatedid
+{
+    font-weight: bold;
+}
+
+#isolatedid:after
+{
+    font-weight: normal;
+    content: 'Element with id'
+}

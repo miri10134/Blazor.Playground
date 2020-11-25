@@ -41,10 +41,6 @@ window.threadingInterop = {
     }
 }
 
-window.getRectangle = (element) => {
-    return element.getBoundingClientRect();
-}
-
 window.addListener = (element, event) => {
     element.addEventListener(event, window.logMouseClick);
 }
